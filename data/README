@@ -1,0 +1,50 @@
+Data formats
+============
+
+
+train/*.trn:
+------------
+{entity_id}-{review_index} {review_rating}
+<one sentence per line, split into EDUs>
+...
+------------
+
+
+gold/aspects/*[dev/tst].asp:
+----------------------------
+<aspect titles separated by '|'>
+
+{entity_id}-{review_index}
+<edu1> [tab] <aspect indices>
+<edu2> [tab] <aspect indices>
+...
+----------------------------
+
+
+gold/polarities/*.pol:
+----------------------
+{entity_id}-{review_index}-{edu_index} [tab] polarity
+...
+----------------------
+
+
+gold/polarities/discrete/*.lbl:
+-------------------------------
+{review_rating} {entity_id}-{review_index}
+{label} [tab] <edu text>
+...
+-------------------------------
+
+
+gold/polarities/salience/*.sal:
+-------------------------------
+{entity_id}-{review_index}-{edu_index} [tab] [ann1] [ann2] [ann3]
+...
+-------------------------------
+
+
+gold/summaries/*/[all/pos/neg]/*:
+---------------------------------
+<one extracted edu per line>
+...
+---------------------------------
