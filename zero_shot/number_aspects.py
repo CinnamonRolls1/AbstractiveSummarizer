@@ -29,9 +29,9 @@ for i in data:
     cleaned_data[i]={}
     for j in aspects:
         if j in data[i]:
-            cleaned_data[i][aspects_index[j]] = data[i][j]
+            cleaned_data[i][j] = data[i][j]
         else:
-            cleaned_data[i][aspects_index[j]] = []
+            cleaned_data[i][j] = []
 
 for i in cleaned_data:
     print(cleaned_data[i])
@@ -39,4 +39,4 @@ for i in cleaned_data:
 
 
 with open('zero-shot-sent-cluster-blue.json', 'w') as outfile:
-    json.dump(cleaned_data, outfile)
+    json.dump(cleaned_data, outfile,indent=4)
