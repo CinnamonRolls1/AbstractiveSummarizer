@@ -1,7 +1,7 @@
 import json 
   
 # Opening JSON file 
-f = open('zero-shot-blue.json',) 
+f = open('zero-shot-boots.json',) 
   
 # returns JSON object as  
 # a dictionary 
@@ -38,5 +38,5 @@ for i in cleaned_data:
     break
 
 
-with open('zero-shot-sent-cluster-blue.json', 'w') as outfile:
+with open('zero-shot-sent-cluster-boots.json', 'w') as outfile:
     json.dump(cleaned_data, outfile,indent=4)
