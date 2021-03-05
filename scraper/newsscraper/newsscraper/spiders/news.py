@@ -12,9 +12,8 @@ class ndtvSpider(scrapy.Spider):
     # def start_requests(self):
         
     start_urls = [
-        'https://www.ndtv.com/top-stories'
+        'https://www.ndtv.com/top-stories/page-1'
     ]
-
 
                 
     def parse(self, response):
@@ -27,7 +26,7 @@ class ndtvSpider(scrapy.Spider):
             ##### LINK
             link=article.xpath(".//a/@href").extract_first()
 
-            ##### Article
+            ##### ARTICLE
             article = fulltext(requests.get(link).text)
 
 
@@ -37,3 +36,9 @@ class ndtvSpider(scrapy.Spider):
                 'article': article,
 
             }
+    
+        next_page = response.xpath("//a[contains(@class,'next')]/@href").extract_first()
+        
+        if next_page is not None:
+            next_page_link = response.urljoin(next_page)
+            yield scrapy.Request(url=next_page_link, callback=self.parse)
