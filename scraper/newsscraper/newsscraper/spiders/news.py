@@ -1,6 +1,8 @@
 import scrapy 
 import re
 import unidecode
+from newspaper import fulltext
+import requests
 
 # running: scrapy crawl ndtv -o ndtv_articles.json
 
@@ -12,6 +14,8 @@ class ndtvSpider(scrapy.Spider):
     start_urls = [
         'https://www.ndtv.com/top-stories'
     ]
+
+
                 
     def parse(self, response):
         for article in response.xpath("//h2[@class='newsHdng']"):
@@ -23,13 +27,13 @@ class ndtvSpider(scrapy.Spider):
             ##### LINK
             link=article.xpath(".//a/@href").extract_first()
 
-            
-            #yield article = scrapy.Request(url=link, callback=self.parse_article)
+            ##### Article
+            article = fulltext(requests.get(link).text)
 
 
             yield {
                 'headline' : headline,
                 'link' : link,
-                #'article': article,
+                'article': article,
 
             }
